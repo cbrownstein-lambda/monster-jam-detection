@@ -15,8 +15,6 @@ parser.add_argument("--img_size", type=int, default=640, help="Image size for tr
 args = parser.parse_args()
 
 # Set up MLflow tracking URI
-
-# Set up MLflow tracking URI
 tracking_uri = args.tracking_uri
 mlflow.set_tracking_uri(tracking_uri)
 

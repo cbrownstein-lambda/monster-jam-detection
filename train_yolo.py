@@ -8,7 +8,7 @@ import argparse
 parser = argparse.ArgumentParser(description="Train YOLO model with MLflow tracking.")
 parser.add_argument("--tracking_uri", type=str, default="http://127.0.0.1:5000", help="MLflow tracking URI (default: http://127.0.0.1:5000)")
 parser.add_argument("--experiment_name", type=str, default="Monster Jam Detection", help="MLflow experiment name (default: Monster Jam Detection)")
-parser.add_argument("--data_config", type=str, default="datasets/Monster-Jam-Detection-10/data.yaml", help="Path to data.yaml config file (default: datasets/Monster-Jam-Detection-10/data.yaml)")
+parser.add_argument("--data_config", type=str, default="datasets/Monster-Jam-Detection-11/data.yaml", help="Path to data.yaml config file (default: datasets/Monster-Jam-Detection-11/data.yaml)")
 parser.add_argument("--model_name", type=str, default="yolo11l.pt", help="YOLO model name (default: yolo11l.pt)")
 parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs (default: 100)")
 parser.add_argument("--img_size", type=int, default=640, help="Image size for training (default: 640)")

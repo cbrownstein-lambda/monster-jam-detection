@@ -78,12 +78,12 @@ export ROBOFLOW_API_KEY=your_api_key_here
 python download_data.py
 
 # Custom options:
-python download_data.py --api_key your_api_key --workspace cody-brownstein --project monster-jam-detection --version_number 10 --download_format yolov8
+python download_data.py --api_key your_api_key --workspace cody-brownstein --project monster-jam-detection --version_number 11 --download_format yolov8
 ```
 **Defaults:**
 - Workspace: `cody-brownstein`
 - Project: `monster-jam-detection`
-- Version: `10`
+- Version: `11`
 - Format: `yolov8`
 
 The dataset will be downloaded to a folder printed in the output.

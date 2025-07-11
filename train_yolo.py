@@ -1,26 +1,34 @@
+
 import mlflow
 import torch
 from ultralytics import YOLO
 import os
 import datetime
+import argparse
 
-# Set up MLflow tracking URI and experiment name
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
+parser = argparse.ArgumentParser(description="Train YOLO model with MLflow tracking.")
+parser.add_argument("--tracking_uri", type=str, default=None, help="MLflow tracking URI")
+parser.add_argument("--experiment_name", type=str, default=None, help="MLflow experiment name")
+parser.add_argument("--data_config", type=str, default=None, help="Path to data.yaml config file")
+parser.add_argument("--model_name", type=str, default=None, help="YOLO model name (e.g., yolo11l.pt)")
+parser.add_argument("--epochs", type=int, default=None, help="Number of training epochs")
+parser.add_argument("--img_size", type=int, default=None, help="Image size for training")
+args = parser.parse_args()
 
-# Use MLFLOW_EXPERIMENT_NAME if set, otherwise set it to "Monster Jam Detection"
-if "MLFLOW_EXPERIMENT_NAME" in os.environ:
-    experiment_name = os.environ["MLFLOW_EXPERIMENT_NAME"]
-else:
-    experiment_name = "Monster Jam Detection"
-    os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
+# Set up MLflow tracking URI
+tracking_uri = args.tracking_uri or os.environ.get("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000")
+mlflow.set_tracking_uri(tracking_uri)
 
+# Set up MLflow experiment name
+experiment_name = args.experiment_name or os.environ.get("MLFLOW_EXPERIMENT_NAME", "Monster Jam Detection")
+os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
 mlflow.set_experiment(experiment_name)
 
 # Training configuration
-data_config = "datasets/Monster-Jam-Detection-9/data.yaml"
-model_name = "yolo11l.pt"
-epochs = 100
-img_size = 640
+data_config = args.data_config or os.environ.get("DATA_CONFIG", "datasets/Monster-Jam-Detection-9/data.yaml")
+model_name = args.model_name or os.environ.get("MODEL_NAME", "yolo11l.pt")
+epochs = args.epochs or int(os.environ.get("EPOCHS", 100))
+img_size = args.img_size or int(os.environ.get("IMG_SIZE", 640))
 
 # Generate a unique run name using model, epoch count, and current timestamp
 run_name = f"{model_name}-e{epochs}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"

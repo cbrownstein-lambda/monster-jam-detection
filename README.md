@@ -55,6 +55,8 @@ The dataset will be downloaded to a folder printed in the output.
 ## 3. Train the YOLO Model
 Use `train_yolo.py` to start training. MLflow will automatically log parameters and results.
 
+> **Important:** Ensure MLflow logging is enabled in YOLO settings. In Ultralytics YOLO, set `mlflow=True` in your training command or configuration if it's not already enabled. See the [Ultralytics MLflow integration docs](https://docs.ultralytics.com/integrations/mlflow/) for details.
+
 ```bash
 # Train with default settings
 python train_yolo.py

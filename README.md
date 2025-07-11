@@ -23,7 +23,7 @@ cd monster-jam-detection
 
 Install all required modules:
 ```bash
-pip install mlflow torch ultralytics roboflow
+pip install -U mlflow torch ultralytics roboflow
 ```
 
 ## 1. Start MLflow Tracking Server

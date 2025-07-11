@@ -3,6 +3,13 @@
 ## Project Overview
 This repository provides code and configuration for training a YOLO object detection model to identify Monster Jam trucks using the Roboflow dataset and MLflow for experiment tracking.
 
+## Getting Started
+Clone the repository:
+```bash
+git clone https://github.com/cbrownstein-lambda/monster-jam-detection.git
+cd monster-jam-detection
+```
+
 ## Prerequisites
 - Python 3.8+
 - Docker (for MLflow server)

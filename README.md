@@ -9,7 +9,7 @@ YOLO (**Y**ou **O**nly **L**ook **O**nce) is a cutting-edge object detection alg
 ---
 
 ### The Dataset
-This project is trained on a [custom dataset](https://universe.roboflow.com/cody-brownstein/monster-jam-detection) of my kid's **die-cast toy** Monster Jam trucks, which he lovingly leaves scattered all over our home. The images are managed on Roboflow and include augmentations—like rotations—to help the model recognize the toy trucks from any angle. The dataset is also [mirrored on Hugging Face](https://huggingface.co/datasets/cbrownstein-lambda/monster-jam). 🤗
+This project is trained on a [custom dataset](https://universe.roboflow.com/cody-brownstein/monster-jam-detection) of my kid's die-cast toy Monster Jam trucks, which he lovingly leaves scattered all over our home. The images are managed on Roboflow and include augmentations—like rotations—to help the model recognize the toy trucks from any angle. The dataset is also [mirrored on Hugging Face](https://huggingface.co/datasets/cbrownstein-lambda/monster-jam). 🤗
 
 ---
 

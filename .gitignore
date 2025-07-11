@@ -1,0 +1,11 @@
+# Python virtual environment
+.venv/
+
+# Roboflow/YOLO datasets
+datasets/
+
+# YOLO training runs
+runs/
+
+# Model weights
+*.pt

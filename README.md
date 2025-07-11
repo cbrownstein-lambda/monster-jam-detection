@@ -15,11 +15,18 @@ cd monster-jam-detection
 - Docker (for MLflow server)
 - Roboflow account and API key
 - GPU recommended for training
+- Recommended: Use a Python virtual environment (venv) to avoid package conflicts.
 - Required Python modules (install with pip):
   - `mlflow`
   - `torch`
   - `ultralytics`
   - `roboflow`
+
+### Set up a Python virtual environment
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
 Install all required modules:
 ```bash

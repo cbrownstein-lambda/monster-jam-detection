@@ -8,6 +8,16 @@ This repository provides code and configuration for training a YOLO object detec
 - Docker (for MLflow server)
 - Roboflow account and API key
 - GPU recommended for training
+- Required Python modules (install with pip):
+  - `mlflow`
+  - `torch`
+  - `ultralytics`
+  - `roboflow`
+
+Install all required modules:
+```bash
+pip install mlflow torch ultralytics roboflow
+```
 
 ## 1. Start MLflow Tracking Server
 MLflow is used to track experiments and results. The project includes a `mlflow.compose.yaml` for easy setup with Docker Compose.

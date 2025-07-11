@@ -75,7 +75,7 @@ python download_data.py --api_key your_api_key --workspace cody-brownstein --pro
 
 The dataset will be downloaded to a folder printed in the output.
 
-> **Note:** Downloaded datasets are expected to be placed in the `datasets/` directory. Make sure your data config path (e.g., `datasets/Monster-Jam-Detection-9/data.yaml`) matches the location of your downloaded dataset.
+> ‼️ **Note:** ‼️ Downloaded datasets are expected to be placed in the `datasets/` directory. Make sure your data config path (e.g., `datasets/Monster-Jam-Detection-9/data.yaml`) matches the location of your downloaded dataset.
 >
 > You can also download the datasets directly from [Roboflow Universe](https://universe.roboflow.com/cody-brownstein/monster-jam-detection).
 

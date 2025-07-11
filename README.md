@@ -1,7 +1,20 @@
 # Monster Jam Detection
 
 ## Project Overview
-This repository provides code and configuration for training a YOLO object detection model to identify Monster Jam trucks using the Roboflow dataset and MLflow for experiment tracking.
+This repository provides code and configuration for training a [YOLO object detection model](https://docs.ultralytics.com/models/yolo11/) to identify die-cast toy [Monster Jam trucks](https://www.monsterjam.com/trucks/) using a [Roboflow](https://roboflow.com/) dataset and [MLflow](https://mlflow.org/) for experiment tracking.
+
+### What is YOLO?
+YOLO (**Y**ou **O**nly **L**ook **O**nce) is a cutting-edge object detection algorithm known for its incredible speed and efficiency. It examines an entire image in a single pass to identify all objects, making it ideal for real-time applications. 🚀
+
+---
+
+### The Dataset
+This project is trained on a [custom dataset](https://universe.roboflow.com/cody-brownstein/monster-jam-detection) of my kid's **die-cast toy** Monster Jam trucks, which he lovingly leaves scattered all over our home. The images are managed on Roboflow and include augmentations—like rotations—to help the model recognize the toy trucks from any angle. The dataset is also [mirrored on Hugging Face](https://huggingface.co/datasets/cbrownstein-lambda/monster-jam). 🤗
+
+---
+
+### Project Goal
+The primary goal is to train a model that can identify the various die-cast toy Monster Jam trucks with at least 90% accuracy.
 
 ## Getting Started
 Clone the repository:

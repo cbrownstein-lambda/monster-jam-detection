@@ -29,6 +29,17 @@ pip install mlflow torch ultralytics roboflow
 ## 1. Start MLflow Tracking Server
 MLflow is used to track experiments and results. The project includes a `mlflow.compose.yaml` for easy setup with Docker Compose.
 
+> **Note for Lambda On-Demand Cloud users:**
+> The `ubuntu` user may need to be added to the `docker` group to run Docker commands without `sudo`:
+> ```bash
+> sudo usermod -aG docker ubuntu
+> # Log out and back in for group changes to take effect
+> ```
+> Alternatively, you can prefix Docker commands with `sudo`:
+> ```bash
+> sudo docker compose -f mlflow.compose.yaml up -d
+> ```
+
 ```bash
 # Start MLflow server (from project root)
 docker compose -f mlflow.compose.yaml up -d

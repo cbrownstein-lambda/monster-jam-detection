@@ -1,4 +1,3 @@
-
 import mlflow
 import torch
 from ultralytics import YOLO
@@ -7,28 +6,30 @@ import datetime
 import argparse
 
 parser = argparse.ArgumentParser(description="Train YOLO model with MLflow tracking.")
-parser.add_argument("--tracking_uri", type=str, default=None, help="MLflow tracking URI")
-parser.add_argument("--experiment_name", type=str, default=None, help="MLflow experiment name")
-parser.add_argument("--data_config", type=str, default=None, help="Path to data.yaml config file")
-parser.add_argument("--model_name", type=str, default=None, help="YOLO model name (e.g., yolo11l.pt)")
-parser.add_argument("--epochs", type=int, default=None, help="Number of training epochs")
-parser.add_argument("--img_size", type=int, default=None, help="Image size for training")
+parser.add_argument("--tracking_uri", type=str, default="http://127.0.0.1:5000", help="MLflow tracking URI (default: http://127.0.0.1:5000)")
+parser.add_argument("--experiment_name", type=str, default="Monster Jam Detection", help="MLflow experiment name (default: Monster Jam Detection)")
+parser.add_argument("--data_config", type=str, default="datasets/Monster-Jam-Detection-9/data.yaml", help="Path to data.yaml config file (default: datasets/Monster-Jam-Detection-9/data.yaml)")
+parser.add_argument("--model_name", type=str, default="yolo11l.pt", help="YOLO model name (default: yolo11l.pt)")
+parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs (default: 100)")
+parser.add_argument("--img_size", type=int, default=640, help="Image size for training (default: 640)")
 args = parser.parse_args()
 
 # Set up MLflow tracking URI
-tracking_uri = args.tracking_uri or os.environ.get("MLFLOW_TRACKING_URI", "http://127.0.0.1:5000")
+
+# Set up MLflow tracking URI
+tracking_uri = args.tracking_uri
 mlflow.set_tracking_uri(tracking_uri)
 
 # Set up MLflow experiment name
-experiment_name = args.experiment_name or os.environ.get("MLFLOW_EXPERIMENT_NAME", "Monster Jam Detection")
+experiment_name = args.experiment_name
 os.environ["MLFLOW_EXPERIMENT_NAME"] = experiment_name
 mlflow.set_experiment(experiment_name)
 
 # Training configuration
-data_config = args.data_config or os.environ.get("DATA_CONFIG", "datasets/Monster-Jam-Detection-9/data.yaml")
-model_name = args.model_name or os.environ.get("MODEL_NAME", "yolo11l.pt")
-epochs = args.epochs or int(os.environ.get("EPOCHS", 100))
-img_size = args.img_size or int(os.environ.get("IMG_SIZE", 640))
+data_config = args.data_config
+model_name = args.model_name
+epochs = args.epochs
+img_size = args.img_size
 
 # Generate a unique run name using model, epoch count, and current timestamp
 run_name = f"{model_name}-e{epochs}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"

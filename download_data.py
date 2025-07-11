@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(description="Download a dataset from Roboflow."
 parser.add_argument("--api_key", type=str, default=None, help="Roboflow API key")
 parser.add_argument("--workspace", type=str, default="cody-brownstein", help="Roboflow workspace name (default: cody-brownstein)")
 parser.add_argument("--project", type=str, default="monster-jam-detection", help="Roboflow project name (default: monster-jam-detection)")
-parser.add_argument("--version_number", type=int, default=9, help="Project version number (default: 9)")
+parser.add_argument("--version_number", type=int, default=10, help="Project version number (default: 10)")
 parser.add_argument("--download_format", type=str, default="yolov8", help="Format to download (default: yolov8)")
 args = parser.parse_args()
 

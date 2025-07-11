@@ -65,15 +65,22 @@ export ROBOFLOW_API_KEY=your_api_key_here
 python download_data.py
 
 # Custom options:
-python download_data.py --api_key your_api_key --workspace cody-brownstein --project monster-jam-detection --version_number 9 --download_format yolov8
+python download_data.py \
+  --api_key your_api_key \
+  --workspace cody-brownstein \
+  --project monster-jam-detection \
+  --version_number 9 \
+  --download_format yolov8 \
+  --output_dir datasets
 ```
 **Defaults:**
 - Workspace: `cody-brownstein`
 - Project: `monster-jam-detection`
 - Version: `9`
 - Format: `yolov8`
+- Output Directory: `datasets`
 
-The dataset will be downloaded to a folder printed in the output.
+The dataset will be downloaded to the specified output directory (default: `datasets`).
 
 > **Note:** Downloaded datasets are expected to be placed in the `datasets/` directory. Make sure your data config path (e.g., `datasets/Monster-Jam-Detection-9/data.yaml`) matches the location of your downloaded dataset.
 >

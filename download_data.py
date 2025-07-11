@@ -8,7 +8,6 @@ parser.add_argument("--workspace", type=str, default="cody-brownstein", help="Ro
 parser.add_argument("--project", type=str, default="monster-jam-detection", help="Roboflow project name (default: monster-jam-detection)")
 parser.add_argument("--version_number", type=int, default=9, help="Project version number (default: 9)")
 parser.add_argument("--download_format", type=str, default="yolov8", help="Format to download (default: yolov8)")
-parser.add_argument("--output_dir", type=str, default="datasets", help="Directory to download the dataset into (default: datasets)")
 args = parser.parse_args()
 
 # --- Configuration Variables ---
@@ -20,15 +19,11 @@ WORKSPACE = args.workspace or os.environ.get("ROBOFLOW_WORKSPACE")
 PROJECT = args.project or os.environ.get("ROBOFLOW_PROJECT")
 VERSION_NUMBER = args.version_number or (int(os.environ.get("ROBOFLOW_VERSION_NUMBER")) if os.environ.get("ROBOFLOW_VERSION_NUMBER") else None)
 DOWNLOAD_FORMAT = args.download_format or os.environ.get("ROBOFLOW_DOWNLOAD_FORMAT")
-OUTPUT_DIR = args.output_dir or os.environ.get("ROBOFLOW_OUTPUT_DIR", "datasets")
 # --- End Configuration Variables ---
-
-# Ensure output directory exists
-os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 rf = Roboflow(api_key=API_KEY)
 project = rf.workspace(WORKSPACE).project(PROJECT)
 version = project.version(VERSION_NUMBER)
-dataset = version.download(DOWNLOAD_FORMAT, location=OUTPUT_DIR)
+dataset = version.download(DOWNLOAD_FORMAT)
 
 print(f"Dataset downloaded to: {dataset.location}")

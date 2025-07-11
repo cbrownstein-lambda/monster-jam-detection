@@ -121,6 +121,34 @@ python train_yolo.py \
 ## 4. View Results
 Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser to view experiment runs, metrics, and artifacts.
 
+## Example Artifacts from YOLO Training
+
+Below are example artifacts produced by YOLO11 training. These help visualize and evaluate your model's performance:
+
+- **val_batch0_labels**
+
+  ![val_batch0_labels](example_artifacts/yolo11l.pt-e50-20250711-214516-val_batch0_labels.jpg)
+
+  *Shows ground truth labels for a batch of validation images.*
+
+- **val_batch0_pred**
+
+  ![val_batch0_pred](example_artifacts/yolo11l.pt-e50-20250711-214516-val_batch0_pred.jpg)
+
+  *Shows predicted bounding boxes and classes for the same batch of validation images.*
+
+- **confusion_matrix**
+
+  ![confusion_matrix](example_artifacts/yolo11l.pt-e50-20250711-214516-confusion_matrix.png)
+
+  *Displays the confusion matrix summarizing model accuracy and misclassifications across all classes.*
+
+- **results**
+
+  ![results](example_artifacts/yolo11l.pt-e50-20250711-214516-results.png)
+
+  *Shows training and validation metrics (e.g., loss, mAP) over epochs.*
+
 ## Environment Variables
 You can set the following environment variables to override defaults:
 - `ROBOFLOW_API_KEY`

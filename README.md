@@ -1,1 +1,82 @@
-# monster-jam-detection
+# Monster Jam Detection
+
+## Project Overview
+This repository provides code and configuration for training a YOLO object detection model to identify Monster Jam trucks using the Roboflow dataset and MLflow for experiment tracking.
+
+## Prerequisites
+- Python 3.8+
+- Docker (for MLflow server)
+- Roboflow account and API key
+- GPU recommended for training
+
+## 1. Start MLflow Tracking Server
+MLflow is used to track experiments and results. The project includes a `mlflow.compose.yaml` for easy setup with Docker Compose.
+
+```bash
+# Start MLflow server (from project root)
+docker compose -f mlflow.compose.yaml up -d
+```
+- MLflow UI will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000)
+- Data is stored in a Docker volume (`mlflow_backend`)
+
+## 2. Download the Dataset from Roboflow
+Use `download_data.py` to fetch the dataset. You need a Roboflow API key. You can pass it as an argument or set it as an environment variable.
+
+```bash
+# Set your Roboflow API key (recommended)
+export ROBOFLOW_API_KEY=your_api_key_here
+
+# Download the dataset (default settings)
+python download_data.py
+
+# Custom options:
+python download_data.py --api_key your_api_key --workspace cody-brownstein --project monster-jam-detection --version_number 9 --download_format yolov8
+```
+**Defaults:**
+- Workspace: `cody-brownstein`
+- Project: `monster-jam-detection`
+- Version: `9`
+- Format: `yolov8`
+
+The dataset will be downloaded to a folder printed in the output.
+
+> **Note:** Downloaded datasets are expected to be placed in the `datasets/` directory. Make sure your data config path (e.g., `datasets/Monster-Jam-Detection-9/data.yaml`) matches the location of your downloaded dataset.
+
+## 3. Train the YOLO Model
+Use `train_yolo.py` to start training. MLflow will automatically log parameters and results.
+
+```bash
+# Train with default settings
+python train_yolo.py
+
+# Custom options:
+python train_yolo.py \
+  --tracking_uri http://127.0.0.1:5000 \
+  --experiment_name "Monster Jam Detection" \
+  --data_config datasets/Monster-Jam-Detection-9/data.yaml \
+  --model_name yolo11l.pt \
+  --epochs 100 \
+  --img_size 640
+```
+**Defaults:**
+- Tracking URI: `http://127.0.0.1:5000`
+- Experiment Name: `Monster Jam Detection`
+- Data Config: `datasets/Monster-Jam-Detection-9/data.yaml`
+- Model Name: `yolo11l.pt`
+- Epochs: `100`
+- Image Size: `640`
+
+## 4. View Results
+Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser to view experiment runs, metrics, and artifacts.
+
+## Environment Variables
+You can set the following environment variables to override defaults:
+- `ROBOFLOW_API_KEY`
+- `ROBOFLOW_WORKSPACE`
+- `ROBOFLOW_PROJECT`
+- `ROBOFLOW_VERSION_NUMBER`
+- `ROBOFLOW_DOWNLOAD_FORMAT`
+- `MLFLOW_EXPERIMENT_NAME`
+
+---
+For questions or issues, please open an issue on GitHub.

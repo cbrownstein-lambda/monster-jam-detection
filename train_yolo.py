@@ -4,6 +4,7 @@ from ultralytics import YOLO
 import os
 import datetime
 import argparse
+import yaml
 
 parser = argparse.ArgumentParser(description="Train YOLO model with MLflow tracking.")
 parser.add_argument("--tracking_uri", type=str, default="http://127.0.0.1:5000", help="MLflow tracking URI (default: http://127.0.0.1:5000)")
@@ -29,6 +30,15 @@ model_name = args.model_name
 epochs = args.epochs
 img_size = args.img_size
 
+# Log roboflow.url from data.yaml if present
+roboflow_url = None
+try:
+    with open(data_config, 'r') as f:
+        data_yaml = yaml.safe_load(f)
+        roboflow_url = data_yaml.get('roboflow', {}).get('url')
+except Exception as e:
+    print(f"Warning: Could not read roboflow.url from {data_config}: {e}")
+
 # Generate a unique run name using model, epoch count, and current timestamp
 run_name = f"{model_name}-e{epochs}-{datetime.datetime.now().strftime('%Y%m%d-%H%M%S')}"
 
@@ -44,6 +54,10 @@ with mlflow.start_run(run_name=run_name):
             mlflow.log_param(f"gpu_{i}_memory_gb", f"{total_mem_gb:.2f}")
     else:
         mlflow.log_param("gpu_count", 0)
+
+    # Log roboflow.url if available
+    if roboflow_url:
+        mlflow.log_param("roboflow_url", roboflow_url)
 
     # Train the YOLO model; Ultralytics logs automatically to the active MLflow run
     print("\nStarting YOLO training...")

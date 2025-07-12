@@ -13,6 +13,7 @@ parser.add_argument("--data_config", type=str, default="datasets/Monster-Jam-Det
 parser.add_argument("--model_name", type=str, default="yolo11l.pt", help="YOLO model name (default: yolo11l.pt)")
 parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs (default: 100)")
 parser.add_argument("--img_size", type=int, default=640, help="Image size for training (default: 640)")
+parser.add_argument("--batch_size", type=int, default=64, help="Batch size for training (default: 64)")
 args = parser.parse_args()
 
 # Set up MLflow tracking URI
@@ -29,6 +30,7 @@ data_config = args.data_config
 model_name = args.model_name
 epochs = args.epochs
 img_size = args.img_size
+batch_size = args.batch_size
 
 # Log roboflow.url from data.yaml if present
 roboflow_url = None
@@ -66,6 +68,7 @@ with mlflow.start_run(run_name=run_name):
         data=data_config,
         epochs=epochs,
         imgsz=img_size,
+        batch=batch_size,
         name=f"{model_name}-e{epochs}"
     )
 
